@@ -40,10 +40,7 @@ public class Product : Aggreagate<Guid>
         Description = description;
         ImageFile = imageFile;
 
-        decimal oldPrice = Price;
-        Price = price;
-
-        if (oldPrice != Price)
+        if (Price != price)
         {
             AddDomainEvent(new ProductPriceChangedEvent(this));
         }
