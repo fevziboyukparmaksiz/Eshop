@@ -1,5 +1,6 @@
 using Catalog.Data;
 using Catalog.Products.Dtos;
+using Catalog.Products.Exceptions;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
@@ -20,7 +21,7 @@ public class GetProductByIdHandler(CatalogDbContext dbContext)
 
         if (product is null)
         {
-            throw new Exception($"Product not found : {query.Id}");
+            throw new ProductNotFoundException(query.Id);
         }
 
         var productDto = product.Adapt<ProductDto>();
