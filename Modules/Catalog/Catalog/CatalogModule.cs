@@ -30,15 +30,15 @@ public static class CatalogModule
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         // Data - Infrastructure Services
-        var connectionStrinng = configuration.GetConnectionString("Database");
-
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+        var connectionString = configuration.GetConnectionString("Database");
         
         services.AddDbContext<CatalogDbContext>((sp,options) =>
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            options.UseNpgsql(connectionStrinng);
+            options.UseNpgsql(connectionString);
         });
            
 
