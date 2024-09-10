@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Shared.DDD;
 
 namespace Basket.Models;
@@ -18,5 +19,14 @@ public class ShoppingCartItem : Entity<Guid>
     public decimal Price { get; private set; }
     public string ProductName { get; private set; }
 
-
+    [JsonConstructor]
+    public ShoppingCartItem(Guid id, Guid shoppingCartId, Guid productId, int quantity, decimal price, string productName)
+    {
+        Id = id;
+        ShoppingCartId = shoppingCartId;
+        ProductId = productId;
+        Quantity = quantity;
+        Price = price;
+        ProductName = productName;
+    }
 }

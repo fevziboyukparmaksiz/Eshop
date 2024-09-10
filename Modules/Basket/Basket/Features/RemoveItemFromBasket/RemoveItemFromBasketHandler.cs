@@ -1,4 +1,5 @@
 using Basket.Data;
+using Basket.Data.Repositories;
 using Basket.Exceptions;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -18,28 +19,16 @@ public class RemoveItemFromBasketCommandValidator : AbstractValidator<RemoveItem
         RuleFor(x => x.ProductId).NotEmpty().WithMessage("ProductId is required");
     }
 }
-public class RemoveItemFromBasketHandler(BasketDbContext dbContext)
+public class RemoveItemFromBasketHandler(IBasketRepository basketRepository)
     :ICommandHandler<RemoveItemFromBasketCommand,RemoveItemFromBasketResult>
 {
     public async Task<RemoveItemFromBasketResult> Handle(RemoveItemFromBasketCommand command, CancellationToken cancellationToken)
     {
-        var shoppingCart = await dbContext.ShoppingCarts
-            .Include(s => s.Items)
-            .SingleOrDefaultAsync(s => s.Username == command.Username, cancellationToken);
+        var shoppingCart = await basketRepository.GetBasket(command.Username, false, cancellationToken);
 
-        if (shoppingCart is null)
-        {
-            throw new BasketNotFoundException(command.Username);
-        }
-
-        var itemToRemove = shoppingCart.Items.SingleOrDefault(s => s.ProductId == command.ProductId);
-
-        if (itemToRemove != null)
-        {
-            shoppingCart.RemoveItem(command.ProductId);
-            await dbContext.SaveChangesAsync(cancellationToken);
-        }
-
+        shoppingCart.RemoveItem(command.ProductId);
+        await basketRepository.SaveChangesAsync(command.Username,cancellationToken);
+        
         return new RemoveItemFromBasketResult(shoppingCart.Id);
     }
 }
