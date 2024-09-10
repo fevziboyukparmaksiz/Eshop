@@ -7,12 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//common services: carter, mediatr, fluentvalidation
 builder.Host.UseSerilog((context, config) =>
     config.ReadFrom.Configuration(context.Configuration));
 
+var catalogAssembly = typeof(CatalogModule).Assembly;
+var basketAssembly = typeof(BasketModule).Assembly;
 
-builder.Services.AddCarterWithAssemblies(typeof(CatalogModule).Assembly);
+builder.Services
+    .AddCarterWithAssemblies(catalogAssembly,basketAssembly)
+    .AddMediatRWithAssemblies(catalogAssembly,basketAssembly);
 
+//module services: catalog, basket, ordering
 builder.Services
     .AddBasketModule(builder.Configuration)
     .AddCatalogModule(builder.Configuration)

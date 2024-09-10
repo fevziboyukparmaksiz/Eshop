@@ -15,7 +15,7 @@ public class BasketDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.HasDefaultSchema("ShoppingCart");
+        builder.HasDefaultSchema("basket");
 
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(builder);

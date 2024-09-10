@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Basket.Data.Migrations
+namespace Basket.data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -12,11 +12,11 @@ namespace Basket.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "ShoppingCart");
+                name: "basket");
 
             migrationBuilder.CreateTable(
                 name: "ShoppingCarts",
-                schema: "ShoppingCart",
+                schema: "basket",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -33,7 +33,7 @@ namespace Basket.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ShoppingCartItems",
-                schema: "ShoppingCart",
+                schema: "basket",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -53,7 +53,7 @@ namespace Basket.Data.Migrations
                     table.ForeignKey(
                         name: "FK_ShoppingCartItems_ShoppingCarts_ShoppingCartId",
                         column: x => x.ShoppingCartId,
-                        principalSchema: "ShoppingCart",
+                        principalSchema: "basket",
                         principalTable: "ShoppingCarts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -61,13 +61,13 @@ namespace Basket.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItems_ShoppingCartId",
-                schema: "ShoppingCart",
+                schema: "basket",
                 table: "ShoppingCartItems",
                 column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCarts_Username",
-                schema: "ShoppingCart",
+                schema: "basket",
                 table: "ShoppingCarts",
                 column: "Username",
                 unique: true);
@@ -78,11 +78,11 @@ namespace Basket.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ShoppingCartItems",
-                schema: "ShoppingCart");
+                schema: "basket");
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts",
-                schema: "ShoppingCart");
+                schema: "basket");
         }
     }
 }

@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Basket.Data.Migrations
+namespace Basket.data.Migrations
 {
     [DbContext(typeof(BasketDbContext))]
     partial class BasketDbContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,7 @@ namespace Basket.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("ShoppingCart")
+                .HasDefaultSchema("basket")
                 .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -51,7 +51,7 @@ namespace Basket.Data.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("ShoppingCarts", "ShoppingCart");
+                    b.ToTable("ShoppingCarts", "basket");
                 });
 
             modelBuilder.Entity("Basket.Models.ShoppingCartItem", b =>
@@ -92,7 +92,7 @@ namespace Basket.Data.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("ShoppingCartItems", "ShoppingCart");
+                    b.ToTable("ShoppingCartItems", "basket");
                 });
 
             modelBuilder.Entity("Basket.Models.ShoppingCartItem", b =>

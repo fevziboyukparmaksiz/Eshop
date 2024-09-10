@@ -6,7 +6,7 @@ using Shared.CQRS;
 
 namespace Basket.Features.CreateBasket;
 
-public record CreateBasketCommand(ShoppingCartDto ShoppingCartDto) 
+public record CreateBasketCommand(ShoppingCartDto ShoppingCart) 
     : ICommand<CreateBasketResult>;
 
 public record CreateBasketResult(Guid Id);
@@ -15,7 +15,7 @@ public class CreateBasketCommandValidator : AbstractValidator<CreateBasketComman
 {
     public CreateBasketCommandValidator()
     {
-        RuleFor(b => b.ShoppingCartDto.Username).NotEmpty().WithMessage("Username is required");
+        RuleFor(b => b.ShoppingCart.Username).NotEmpty().WithMessage("Username is required");
     }
 }
 
@@ -24,7 +24,7 @@ public class CreateBasketHandler(BasketDbContext dbContext)
 {
     public async Task<CreateBasketResult> Handle(CreateBasketCommand command, CancellationToken cancellationToken)
     {
-        var shoppingCart = CreateNewShoppingCart(command.ShoppingCartDto);
+        var shoppingCart = CreateNewShoppingCart(command.ShoppingCart);
 
         dbContext.ShoppingCarts.Add(shoppingCart);
         await dbContext.SaveChangesAsync(cancellationToken);

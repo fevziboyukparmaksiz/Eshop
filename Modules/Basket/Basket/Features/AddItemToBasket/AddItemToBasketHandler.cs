@@ -9,7 +9,7 @@ namespace Basket.Features.AddItemToBasket;
 
 public record AddItemToBasketCommand(string Username,ShoppingCartItemDto ShoppingCartItem) 
     :ICommand<AddItemToBasketResult>;
-public record AddItemToBasketResult(Guid Id);
+public record AddItemToBasketResult(Guid ShoppingCartId);
 
 public class AddItemToBasketCommandValidator : AbstractValidator<AddItemToBasketCommand>
 {
