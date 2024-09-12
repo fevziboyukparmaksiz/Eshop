@@ -1,8 +1,8 @@
+using Catalog.Contracts.Products.Dtos;
 using Catalog.Data;
-using Catalog.Products.Dtos;
 using Catalog.Products.Models;
 using FluentValidation;
-using Shared.CQRS;
+using Shared.Contracts.CQRS;
 
 namespace Catalog.Products.Features.CreateProduct;
 

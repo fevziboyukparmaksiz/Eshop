@@ -1,8 +1,5 @@
-using Basket.Data;
 using Basket.Data.Repositories;
-using Basket.Exceptions;
-using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
+using Shared.Contracts.CQRS;
 
 namespace Basket.Features.DeleteBasket;
 

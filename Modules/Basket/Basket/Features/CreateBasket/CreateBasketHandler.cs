@@ -1,9 +1,8 @@
-using Basket.Data;
 using Basket.Data.Repositories;
 using Basket.Dtos;
 using Basket.Models;
 using FluentValidation;
-using Shared.CQRS;
+using Shared.Contracts.CQRS;
 
 namespace Basket.Features.CreateBasket;
 

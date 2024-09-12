@@ -1,10 +1,9 @@
-using Basket.Data;
 using Basket.Data.Repositories;
 using Basket.Dtos;
-using Basket.Exceptions;
+using Catalog.Contracts.Features.GetProductById;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
+using MediatR;
+using Shared.Contracts.CQRS;
 
 namespace Basket.Features.AddItemToBasket;
 
@@ -22,18 +21,26 @@ public class AddItemToBasketCommandValidator : AbstractValidator<AddItemToBasket
     }
 }
 
-public class AddItemToBasketHandler(IBasketRepository basketRepository) 
+public class AddItemToBasketHandler(
+    IBasketRepository basketRepository, ISender sender) 
     : ICommandHandler<AddItemToBasketCommand,AddItemToBasketResult>
 {
     public async Task<AddItemToBasketResult> Handle(AddItemToBasketCommand command, CancellationToken cancellationToken)
     {
         var shoppingCart = await basketRepository.GetBasket(command.Username, false, cancellationToken);
         
+        //TODO: Before AddItem into SC, we should call Catalog Module GetProductById method
+        // Get latest product information and set Price and ProductName when adding item into SC
+
+        var result = await sender.Send(new GetProductByIdQuery(command.ShoppingCartItem.ProductId),cancellationToken);
+
         shoppingCart.AddItem(
             command.ShoppingCartItem.ProductId,
             command.ShoppingCartItem.Quantity,
-            command.ShoppingCartItem.ProductName,
-            command.ShoppingCartItem.Price);
+            result.Product.Name,
+            result.Product.Price);
+            //command.ShoppingCartItem.Price,
+            //command.ShoppingCartItem.ProductName);
 
         await basketRepository.SaveChangesAsync(command.Username,cancellationToken);
 

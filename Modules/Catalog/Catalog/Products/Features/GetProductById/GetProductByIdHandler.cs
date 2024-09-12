@@ -1,14 +1,15 @@
+using Catalog.Contracts.Features.GetProductById;
+using Catalog.Contracts.Products.Dtos;
 using Catalog.Data;
-using Catalog.Products.Dtos;
 using Catalog.Products.Exceptions;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
+using Shared.Contracts.CQRS;
 
 namespace Catalog.Products.Features.GetProductById;
 
-public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResult>;
-public record GetProductByIdResult(ProductDto Product);
+//public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResult>;
+//public record GetProductByIdResult(ProductDto Product);
 
 public class GetProductByIdHandler(CatalogDbContext dbContext)
     : IQueryHandler<GetProductByIdQuery, GetProductByIdResult>
