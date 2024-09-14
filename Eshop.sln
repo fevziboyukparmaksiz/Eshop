@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared\Sha
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CD559953-3FA0-4A6B-9F51-E55DF9620ACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Contracts", "Shared\Shared.Contracts\Shared.Contracts.csproj", "{3953C326-3956-4F68-943A-9A24291EE7D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Contracts", "Shared\Shared.Contracts\Shared.Contracts.csproj", "{3953C326-3956-4F68-943A-9A24291EE7D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Contracts", "Modules\Catalog\Catalog.Contracts\Catalog.Contracts.csproj", "{5737E116-03D5-4C9F-80D4-44D6E457EF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Contracts", "Modules\Catalog\Catalog.Contracts\Catalog.Contracts.csproj", "{5737E116-03D5-4C9F-80D4-44D6E457EF12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Messaging", "Shared\Shared.Messaging\Shared.Messaging.csproj", "{CDB8D932-5314-40D6-9884-48285F487624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{5737E116-03D5-4C9F-80D4-44D6E457EF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5737E116-03D5-4C9F-80D4-44D6E457EF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5737E116-03D5-4C9F-80D4-44D6E457EF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB8D932-5314-40D6-9884-48285F487624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB8D932-5314-40D6-9884-48285F487624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB8D932-5314-40D6-9884-48285F487624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB8D932-5314-40D6-9884-48285F487624}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{5E7ADB1E-D91E-4BBE-84B1-A6962FF60FE1} = {8D4EB13B-19E0-484E-8B58-0F7737721058}
 		{3953C326-3956-4F68-943A-9A24291EE7D3} = {8D4EB13B-19E0-484E-8B58-0F7737721058}
 		{5737E116-03D5-4C9F-80D4-44D6E457EF12} = {744A681A-1184-4FC2-9DBE-D11767035D0E}
+		{CDB8D932-5314-40D6-9884-48285F487624} = {8D4EB13B-19E0-484E-8B58-0F7737721058}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CF22FDA-2104-422C-ADA2-1C1545798E57}

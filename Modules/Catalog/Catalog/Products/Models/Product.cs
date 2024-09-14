@@ -42,6 +42,7 @@ public class Product : Aggreagate<Guid>
 
         if (Price != price)
         {
+            Price = price;
             AddDomainEvent(new ProductPriceChangedEvent(this));
         }
     }
