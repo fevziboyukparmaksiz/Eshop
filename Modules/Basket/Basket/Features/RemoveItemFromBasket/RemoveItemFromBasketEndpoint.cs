@@ -15,8 +15,8 @@ public class RemoveItemFromBasketEndpoint : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapDelete("/basket/{username}/items/{productId}",
-                async ([FromRoute] string username, 
-                    [FromRoute] Guid productId, 
+                async ([FromRoute] string username,
+                    [FromRoute] Guid productId,
                     ISender sender) =>
                 {
                     var command = new RemoveItemFromBasketCommand(username, productId);
@@ -27,6 +27,7 @@ public class RemoveItemFromBasketEndpoint : ICarterModule
             .Produces<RemoveItemFromBasketResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Remove Item From Basket")
-            .WithDescription("Remove Item From Basket");
+            .WithDescription("Remove Item From Basket")
+            .RequireAuthorization();
     }
 }

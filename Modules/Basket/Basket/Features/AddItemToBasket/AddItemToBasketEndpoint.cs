@@ -16,9 +16,9 @@ public class AddItemToBasketEndpoint: ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("/basket/{username}/items", 
-                async ([FromRoute] string username, 
-                    [FromBody] AddItemToBasketRequest request, 
+        app.MapPost("/basket/{username}/items",
+                async ([FromRoute] string username,
+                    [FromBody] AddItemToBasketRequest request,
                     ISender sender) =>
                 {
                     var command = new AddItemToBasketCommand(username, request.ShoppingCartItem);
@@ -29,6 +29,7 @@ public class AddItemToBasketEndpoint: ICarterModule
             .Produces<AddItemToBasketResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Add Item Into Basket")
-            .WithDescription("Add Item Into Basket");
+            .WithDescription("Add Item Into Basket")
+            .RequireAuthorization();
     }
 }
